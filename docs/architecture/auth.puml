@@ -1,0 +1,44 @@
+@startuml
+
+title Authorization/Authentication
+
+autonumber
+
+participant Client as client
+participant "Mobile Application" as app
+participant "Backend Server" as server
+participant "File Storage" as fileStorage
+participant "Data Base" as db
+
+activate client
+client -> app: register user
+activate app
+app -> server: POST /register
+activate server
+server -> server: encrypt password
+server -> db: save user
+activate db
+db --> server
+deactivate db
+server -> server: exclude password
+server --> app: user
+deactivate server
+app --> client: user
+deactivate app
+
+client -> app: login
+activate app
+app -> server: POST /login
+activate server
+server -> db: get user
+activate db
+db --> server: user
+deactivate db
+server -> server: validate credentials
+server -> server: generate JWT token
+server --> app: JWT token
+deactivate server
+app --> client
+deactivate client
+
+@enduml

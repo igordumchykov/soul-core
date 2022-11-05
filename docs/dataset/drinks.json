@@ -1,0 +1,102 @@
+{
+  "name": {
+    "ua": "",
+    "eng": "drinks"
+  },
+  "description": {
+    "ua": "",
+    "eng": "All drinks are here"
+  },
+  "imageUrl": "some image",
+  "groups": [
+    {
+      "category": "non-alcohol",
+      "name": {
+        "ua": "",
+        "eng": "Non alcohol drinks"
+      },
+      "description": {
+        "ua": "",
+        "eng": "Non alcohol drinks are here"
+      },
+      "imageUrl": "some image non-alcohol",
+      "tags": [
+        "non-alcohol"
+      ],
+      "groups": [
+        {
+          "category": "tea",
+          "name": {
+            "ua": "",
+            "eng": "tea"
+          },
+          "description": {
+            "ua": "",
+            "eng": "All tea are here"
+          },
+          "imageUrl": "some image tea",
+          "tags": [
+            "non-alcohol",
+            "tea"
+          ],
+          "groups": [
+            {
+              "category": "chinese tea",
+              "name": {
+                "ua": "",
+                "eng": "Chinese tea"
+              },
+              "description": {
+                "ua": "",
+                "eng": "All chinese tea are here"
+              },
+              "imageUrl": "some image chinese tea",
+              "tags": [
+                "non-alcohol",
+                "tea",
+                "chinese"
+              ],
+              "items": [
+                {
+                  "name": {
+                    "ua": "",
+                    "eng": "Ulun"
+                  },
+                  "description": {
+                    "ua": "",
+                    "eng": "ulun tea"
+                  },
+                  "prices": [
+                    {
+                      "price": 50,
+                      "volume": 260
+                    },
+                    {
+                      "price": 70,
+                      "volume": 350
+                    }
+                  ],
+                  "priceUnit": {
+                    "ua": "UAH",
+                    "eng": "грн"
+                  },
+                  "volumeUnit": {
+                    "ua": "мл",
+                    "eng": "ml"
+                  },
+                  "imageUrl": "some image ulun tea",
+                  "tags": [
+                    "non-alcohol",
+                    "tea",
+                    "chinese",
+                    "ulun"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

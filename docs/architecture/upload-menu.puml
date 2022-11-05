@@ -1,0 +1,67 @@
+@startuml
+
+title Upload Menu
+
+autonumber
+
+participant Client as client
+participant "Mobile Application" as app
+participant "Backend Server" as server
+participant "File Storage" as fileStorage
+participant "Data Base" as db
+
+activate client
+client -> app: create/update menu
+activate app
+app -> app: prepare menu request
+app -> server: send menu request
+activate server
+server -> db: save menu
+activate db
+db --> server: menu
+deactivate db
+server --> app: menu
+deactivate server
+
+app -> app: prepare images
+app -> server: send images
+activate server
+server -> db: retrieve menu
+activate db
+db --> server: menu
+deactivate db
+
+server -> fileStorage: upload images
+activate fileStorage
+fileStorage --> server
+deactivate fileStorage
+server -> server: construct image urls
+server -> server: replace image names with urls in menu
+server -> db: update menu
+activate db
+db --> server
+deactivate db
+server --> app: return menu list with image urls
+deactivate server
+app --> client: menu
+deactivate app
+
+client -> app: read menu
+activate app
+app -> server: read menu
+activate server
+server -> db: read menu
+activate db
+db --> server: menu
+deactivate db
+server --> app: menu
+deactivate server
+app -> fileStorage: read images
+activate fileStorage
+fileStorage --> app: image urls
+deactivate fileStorage
+app --> client: menu
+deactivate app
+deactivate client
+
+@enduml

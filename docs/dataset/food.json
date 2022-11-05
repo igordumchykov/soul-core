@@ -1,0 +1,127 @@
+{
+  "name": {
+    "ua": "",
+    "eng": "food"
+  },
+  "description": {
+    "ua": "",
+    "eng": "All food are here"
+  },
+  "imageUrl": "some image",
+  "groups": [
+    {
+      "category": "burgers",
+      "name": {
+        "ua": "",
+        "eng": "Burgers"
+      },
+      "description": {
+        "ua": "",
+        "eng": "Burgers are here"
+      },
+      "imageUrl": "some image burger",
+      "tags": [
+        "burger"
+      ],
+      "items": [
+        {
+          "name": {
+            "ua": "",
+            "eng": "Cheese burger"
+          },
+          "description": {
+            "ua": "",
+            "eng": "Cheese burger"
+          },
+          "priceUnit": {
+            "ua": "UAH",
+            "eng": "грн"
+          },
+          "prices": [
+            {
+              "description": {
+                "ua": "стандарт",
+                "eng": "standart"
+              },
+              "price": 50,
+              "volume": 260
+            },
+            {
+              "description": {
+                "ua": "подвiйний",
+                "eng": "double"
+              },
+              "price": 70,
+              "volume": 350
+            }
+          ],
+          "volumeUnit": {
+            "ua": "гр",
+            "eng": "g"
+          },
+          "imageUrl": "some image burger",
+          "tags": [
+            "burger",
+            "cheese"
+          ],
+          "ingredients": [
+            {
+              "name": {
+                "ua": "булка",
+                "eng": "bread"
+              },
+              "description": {
+                "ua": "булка",
+                "eng": "bread"
+              },
+              "imageUrl": "bread img",
+              "available": true
+            },
+            {
+              "name": {
+                "ua": "котлета",
+                "eng": "cotlet"
+              },
+              "description": {
+                "ua": "котлета",
+                "eng": "cotlet"
+              },
+              "imageUrl": "cotlet img",
+              "available": false,
+              "tags": [
+                "cotlet"
+              ]
+            }
+          ],
+          "extra": [
+            {
+              "name": {
+                "ua": "котлета",
+                "eng": "cotlet"
+              },
+              "description": {
+                "ua": "котлета",
+                "eng": "cotlet"
+              },
+              "prices": [
+                {
+                  "description": {
+                    "ua": "сир",
+                    "eng": "cheese"
+                  },
+                  "price": 10,
+                  "volume": 20
+                }
+              ],
+              "imageUrl": "cotlet img",
+              "available": false,
+              "tags": [
+                "cotlet"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

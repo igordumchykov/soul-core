@@ -1,0 +1,112 @@
+@startuml
+
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity abstract_entity {
+    *id : UUID <<generated>>
+    *createdBy: string
+    *createdDate: date
+    *updatedBy: string
+    *updatedDate: date
+}
+
+entity users {
+    *login: string
+    *password: string
+    *firstName: string
+    *lastName: string
+    *email: string
+    *activated: boolean
+    ---
+    imageUrl: string
+    *authorities: **authority**
+}
+
+object authority {
+  *name: string
+}
+
+entity drinks {
+  *name: lang_string
+  description: lang_string
+  imageUrl: string
+  ---
+  groups: **menu_group[]**
+  items: **item[]**
+}
+
+entity food {
+  *name: lang_string
+  description: lang_string
+  imageUrl: string
+  tags: string[]
+  ---
+  groups: **menu_group[]**
+  items: **item[]**
+}
+
+entity menu_group {
+  *category: menu_type
+  *name: lang_string
+  description: lang_string
+  imageUrl: string
+  tags: string[]
+  available: boolean
+  ---
+  groups: **menu_group[]**
+  items: **item[]**
+}
+
+entity item {
+  *name: lang_string map
+  description: lang_string
+  *priceUnit: lang_string
+  volumeUnit: lang_string
+  *prices: price[]
+  imageUrl: string
+  tags: string[]
+  available: boolean
+  ---
+  ingredients: **ingredient[]**
+  extra: **ingredient[]**
+}
+
+object price {
+    description: lang_string
+    *price: number
+    *volume: number
+}
+
+entity ingredient {
+  *name: lang_string
+  description: lang_string
+  imageUrl: string
+  tags: string[]
+  available: boolean
+  ---
+  prices: price[]
+}
+
+object lang_string {
+    *ua: string
+    eng: string
+}
+
+
+ingredient o..o price
+item o..o price
+abstract_entity o..o users
+users }|--|{ authority
+abstract_entity o..o drinks
+abstract_entity o..o food
+drinks ||--|{ menu_group
+food ||--|{ menu_group
+menu_group ||--|{ menu_group
+menu_group ||--|{ item
+item }|--|{ ingredient
+
+@enduml
