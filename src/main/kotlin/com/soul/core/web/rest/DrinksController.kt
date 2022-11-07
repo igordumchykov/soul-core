@@ -21,6 +21,13 @@ class DrinksController(
     }
 
     @PreAuthorize("hasAuthority(\"$ADMIN\")")
+    @DeleteMapping
+    fun deleteAll(): ResponseEntity<Drinks> {
+        service.deleteAll()
+        return ResponseEntity.ok().build()
+    }
+
+    @PreAuthorize("hasAuthority(\"$ADMIN\")")
     @PostMapping
     fun add(@RequestBody payload: Drinks): ResponseEntity<Drinks> {
         return ResponseEntity.ok(service.add(payload))

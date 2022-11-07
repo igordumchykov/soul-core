@@ -24,4 +24,7 @@ class FoodService(
         attachImageUrl(entity, map)
         return repository.save(entity)
     }
+
+    fun deleteAll() = repository.deleteAll()
+
 }

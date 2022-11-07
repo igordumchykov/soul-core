@@ -1,6 +1,10 @@
 package com.soul.core.service
 
 import com.amazonaws.services.s3.AmazonS3Client
+import com.amazonaws.services.s3.model.CannedAccessControlList
+import com.amazonaws.services.s3.model.CreateBucketRequest
+import com.amazonaws.services.s3.model.ObjectMetadata
+import com.amazonaws.services.s3.model.PutObjectRequest
 import com.soul.core.config.ApplicationProperties
 import org.slf4j.LoggerFactory
 import org.springframework.core.env.Environment
@@ -22,6 +26,7 @@ class FileUploader(
     fun intiBucket() {
         if (!s3Client.doesBucketExist(menuBucketName)) {
             log.debug("Bucket $menuBucketName does not exist. Creating bucket...")
+            CreateBucketRequest(menuBucketName).withCannedAcl(CannedAccessControlList.PublicRead)
             s3Client.createBucket(menuBucketName)
             log.debug("Bucket $menuBucketName was created")
         }
@@ -32,11 +37,20 @@ class FileUploader(
      * @return file url
      */
     fun uploadFile(file: MultipartFile): String {
+
+        val metadata = ObjectMetadata()
+        metadata.contentType = "text/plain"
+        metadata.contentLength = file.size
+
         s3Client.putObject(
-            menuBucketName,
-            file.originalFilename,
-            String(file.bytes),
+            PutObjectRequest(
+                menuBucketName,
+                file.originalFilename,
+                file.inputStream,
+                metadata
+            ).withCannedAcl(CannedAccessControlList.PublicRead)
         )
+
         return s3Client.getResourceUrl(menuBucketName, extractFileName(file))
     }
 

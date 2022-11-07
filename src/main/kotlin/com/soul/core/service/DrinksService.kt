@@ -9,19 +9,21 @@ import org.springframework.web.multipart.MultipartFile
 
 @Service
 class DrinksService(
-    private val drinksRepository: DrinksRepository,
+    private val repository: DrinksRepository,
     private val uploader: FileUploader
 ) {
 
     fun getAll(): Drinks =
-        drinksRepository.findAll().getOrElse(0) { throw MenuNotFoundException("Drinks not found") }
+        repository.findAll().getOrElse(0) { throw MenuNotFoundException("Drinks not found") }
 
-    fun add(drinks: Drinks): Drinks = drinksRepository.save(drinks)
+    fun add(drinks: Drinks): Drinks = repository.save(drinks)
 
     fun uploadImages(images: List<MultipartFile>): Drinks {
         val map = uploader.uploadFiles(images)
         val entity = getAll()
         attachImageUrl(entity, map)
-        return drinksRepository.save(entity)
+        return repository.save(entity)
     }
+
+    fun deleteAll() = repository.deleteAll()
 }
