@@ -1,5 +1,6 @@
 package com.soul.core.web.error
 
+import com.amazonaws.services.s3.model.AmazonS3Exception
 import com.soul.core.service.dto.ErrorResponse
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -41,4 +42,7 @@ class ExceptionTranslator : SecurityAdviceTrait {
         return ErrorResponse("Invalid request body", HttpStatus.BAD_REQUEST.value(), detail)
     }
 
+    @ExceptionHandler(AmazonS3Exception::class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    fun handleAmazonS3Exception(e: AmazonS3Exception) = ErrorResponse(e.message!!, HttpStatus.INTERNAL_SERVER_ERROR.value())
 }

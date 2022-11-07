@@ -5,6 +5,7 @@ import com.soul.core.security.jwt.JWTConfigurer
 import com.soul.core.security.jwt.TokenProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Import
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -54,7 +55,14 @@ class SecurityConfiguration(
             .antMatchers("/upload").permitAll()
             .antMatchers("/api/login").permitAll()
             .antMatchers("/api/admin/**").hasAuthority(ADMIN)
-            .antMatchers("/api/**").authenticated()
+
+            .antMatchers(HttpMethod.POST,"/api/**").authenticated()
+            .antMatchers(HttpMethod.PUT,"/api/**").authenticated()
+            .antMatchers(HttpMethod.DELETE,"/api/**").authenticated()
+
+            .antMatchers(HttpMethod.GET, "/api/v1/food").permitAll()
+            .antMatchers(HttpMethod.GET,"/api/v1/drinks").permitAll()
+
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/health/**").permitAll()
             .antMatchers("/management/info").permitAll()

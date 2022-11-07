@@ -14,6 +14,7 @@ object RestEndpoints {
     const val FOOD_PATH = "/api/v1/food"
     const val AUTH_PATH = "/api"
     const val ADMIN_PATH = "/api/admin/user"
+    const val IMAGES_PATH = "/api/admin/images"
 }
 
 object TableNames {

@@ -1,10 +1,7 @@
 package com.soul.core.service
 
 import com.amazonaws.services.s3.AmazonS3Client
-import com.amazonaws.services.s3.model.CannedAccessControlList
-import com.amazonaws.services.s3.model.CreateBucketRequest
-import com.amazonaws.services.s3.model.ObjectMetadata
-import com.amazonaws.services.s3.model.PutObjectRequest
+import com.amazonaws.services.s3.model.*
 import com.soul.core.config.ApplicationProperties
 import org.slf4j.LoggerFactory
 import org.springframework.core.env.Environment
@@ -13,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile
 import javax.annotation.PostConstruct
 
 @Service
-class FileUploader(
+class ImageService(
     private val s3Client: AmazonS3Client,
     properties: ApplicationProperties,
     env: Environment,
@@ -62,6 +59,15 @@ class FileUploader(
         return files.filter { it.originalFilename != null }
             .associate { extractFileName(it) to uploadFile(it) }
     }
+
+    fun listImages(): MutableList<S3ObjectSummary>? = s3Client.listObjects(menuBucketName)?.objectSummaries
+
+    fun renameImage(oldName: String, newName: String) {
+        s3Client.copyObject(menuBucketName, oldName, menuBucketName, newName)
+        s3Client.deleteObject(menuBucketName, oldName)
+    }
+
+    fun removeImage(name: String) = s3Client.deleteObject(menuBucketName, name)
 
     private fun extractFileName(file: MultipartFile): String = file.originalFilename!!
 }

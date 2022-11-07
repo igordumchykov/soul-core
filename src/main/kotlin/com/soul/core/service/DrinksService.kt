@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile
 @Service
 class DrinksService(
     private val repository: DrinksRepository,
-    private val uploader: FileUploader
+    private val fileService: ImageService
 ) {
 
     fun getAll(): Drinks =
@@ -19,7 +19,7 @@ class DrinksService(
     fun add(drinks: Drinks): Drinks = repository.save(drinks)
 
     fun uploadImages(images: List<MultipartFile>): Drinks {
-        val map = uploader.uploadFiles(images)
+        val map = fileService.uploadFiles(images)
         val entity = getAll()
         attachImageUrl(entity, map)
         return repository.save(entity)

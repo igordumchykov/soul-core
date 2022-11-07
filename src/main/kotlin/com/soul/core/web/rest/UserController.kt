@@ -1,7 +1,7 @@
 package com.soul.core.web.rest
 
 import com.soul.core.config.RestEndpoints.ADMIN_PATH
-import com.soul.core.service.FileUploader
+import com.soul.core.service.ImageService
 import com.soul.core.service.UserService
 import com.soul.core.service.dto.CreateUserRequest
 import com.soul.core.service.dto.UpdateUserRequest
@@ -17,7 +17,7 @@ import javax.validation.Valid
 class UserController(
     private var userService: UserService,
     private var mapper: UserMapper,
-    private var fileUploader: FileUploader
+    private var fileService: ImageService
 ) {
 
     @PostMapping
@@ -29,7 +29,7 @@ class UserController(
     @PostMapping("{id}/image")
     fun uploadImage(@PathVariable id: String, @RequestParam("img") file: MultipartFile): ResponseEntity<UserDto> {
         val user = userService.get(id)
-        val fileUrl = fileUploader.uploadFile(file)
+        val fileUrl = fileService.uploadFile(file)
         user.imageUrl = fileUrl
         userService.update(user)
         return ResponseEntity.ok(mapper.toDto(user))
