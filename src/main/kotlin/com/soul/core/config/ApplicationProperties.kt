@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component
 @Component
 @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 class ApplicationProperties(
-    var security: Security = Security()
+    var security: Security = Security(),
+    var aws: AWS = AWS()
 )
 
 class Security(
@@ -29,4 +30,8 @@ class Cors(
     var allowedMethods: List<String> = listOf("*"),
     var allowedHeaders: List<String> = listOf("*"),
     var allowCredentials: Boolean = true,
+)
+
+class AWS(
+    var menuBucketPrefix: String = ""
 )

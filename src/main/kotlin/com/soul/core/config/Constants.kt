@@ -17,7 +17,7 @@ object RestEndpoints {
 }
 
 object TableNames {
-    const val DRINKS = "drinks"
+    const val DRINK = "drink"
     const val FOOD = "food"
     const val USER = "user"
 }

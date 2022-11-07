@@ -5,13 +5,17 @@ Manages restaurant menu for drinks and food
 
 - Java 17.x
 - Kotlin 1.7.x
+- Gradle 7.5.x
 
 # Start application
 
-To start your application in the dev profile, run:
+To start your application, run:
 
 ```
-SPRING_PROFILES_ACTIVE=dev \
+AWS_REGION=<AWS region> \
+AWS_ACCESS_KEY_ID=<AWS access key id> \
+AWS_SECRET_ACCESS_KEY=<AWS secret key> \
+SPRING_PROFILES_ACTIVE=<profile dev/qa/prod> \
 APPLICATION_SECURITY_AUTHENTICATION_SECRET=<provide any base 64 encoded secret value> \
 INIT_USER_EMAIL_LIST=<coma separated emails to be used for users> \
 INIT_USER_LOGIN_LIST=<coma separated logins to be used for users> \
@@ -21,6 +25,22 @@ DB_NAME=<db name> \
 DB_URI='<db url>' \
 ./gradlew bootRun
 ```
+
+# Run in Docker
+- `docker build -t multiplexor88/soul-core:v0.0.1 ./src/main/docker`
+- `sudo docker run -d -p 8080:8080 \
+  --env AWS_REGION='' \
+  --env AWS_ACCESS_KEY_ID='' \
+  --env AWS_SECRET_ACCESS_KEY='' \
+  --env SPRING_PROFILES_ACTIVE=''' \
+  --env APPLICATION_SECURITY_AUTHENTICATION_SECRET=''' \
+  --env INIT_USER_EMAIL_LIST=''' \
+  --env INIT_USER_LOGIN_LIST=''' \
+  --env INIT_USER_ROLE_LIST='' \
+  --env INIT_USER_PASSWORD_LIST=''' \
+  --env DB_NAME=''' \
+  --env DB_URI='' \
+  --name soul-core multiplexor88/soul-core:v0.0.1 --network=host`
 
 # Defaults
 

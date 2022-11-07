@@ -3,7 +3,7 @@ package com.soul.core.domain
 import com.soul.core.config.TableNames
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document(TableNames.DRINKS)
+@Document(TableNames.DRINK)
 class Drinks(
     id: String? = null,
     name: LangString? = LangString(),

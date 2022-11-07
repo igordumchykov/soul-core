@@ -46,6 +46,7 @@ dependencies {
 
     implementation("org.springdoc:springdoc-openapi-ui:1.6.12")
     runtimeOnly("org.springdoc:springdoc-openapi-kotlin:1.6.12")
+    implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")

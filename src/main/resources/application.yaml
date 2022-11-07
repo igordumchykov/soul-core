@@ -1,14 +1,24 @@
+cloud:
+  aws:
+    stack: false
+    stack.auto: false
+    region:
+      static: ${AWS_REGION}
+    credentials:
+      access-key: ${AWS_ACCESS_KEY_ID}
+      secret-key: ${AWS_SECRET_ACCESS_KEY}
 logging:
   level:
     ROOT: INFO
     com.soul.core: DEBUG
     org.springframework: INFO
     org.mongodb: ERROR
+    com.amazonaws.util.EC2MetadataUtils: ERROR
 spring:
   data:
     mongodb:
-      uri: ${db_uri}
-      database: ${db_name}
+      uri: ${DB_URI}
+      database: ${DB_NAME}
   jackson:
     default-property-inclusion: non_null
   devtools:
@@ -24,9 +34,11 @@ management:
       exposure:
         include: [ 'configprops', 'env', 'health', 'info', 'jhimetrics', 'logfile', 'loggers', 'prometheus', 'threaddump', 'caches' ]
 application:
+  aws:
+    menuBucketPrefix: "soul-menu"
   security:
     authentication:
-      secret: ${application_security_authentication_secret}
+      secret: ${APPLICATION_SECURITY_AUTHENTICATION_SECRET}
       validity-sec: 3600
       validity-remember-me-sec: 7200
     cors:
