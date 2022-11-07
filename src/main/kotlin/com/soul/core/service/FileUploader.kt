@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.core.env.Environment
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
-import java.io.File
 import javax.annotation.PostConstruct
 
 @Service
