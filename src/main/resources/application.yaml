@@ -42,7 +42,7 @@ application:
       validity-sec: 3600
       validity-remember-me-sec: 7200
     cors:
-      allowed-origins: "*"
+      allowed-origin-patterns: "*"
       allowed-methods: "*"
       allowed-headers: "*"
       allow-credentials: true

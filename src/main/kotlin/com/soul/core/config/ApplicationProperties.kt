@@ -26,7 +26,7 @@ class Authentication(
 )
 
 class Cors(
-    var allowedOrigins: List<String> = listOf("*"),
+    var allowedOriginPatterns: List<String> = listOf("*"),
     var allowedMethods: List<String> = listOf("*"),
     var allowedHeaders: List<String> = listOf("*"),
     var allowCredentials: Boolean = true,

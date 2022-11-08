@@ -39,10 +39,11 @@ class WebConfigurer(
         val source = UrlBasedCorsConfigurationSource()
         val cors = properties.security.cors
         val config = CorsConfiguration()
-        config.allowedOrigins = cors.allowedOrigins
+        config.allowedOriginPatterns = cors.allowedOriginPatterns
         config.allowCredentials = cors.allowCredentials
         config.allowedHeaders = cors.allowedHeaders
         config.allowedMethods = cors.allowedMethods
+        source.registerCorsConfiguration("/**", config)
         return CorsFilter(source)
     }
 
