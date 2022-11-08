@@ -5,6 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Field
 class Item(
 
     @Field
+    var subId: String? = null,
+
+    @Field
     var name: LangString? = LangString(),
 
     @Field

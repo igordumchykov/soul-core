@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Field
 class Ingredient(
 
     @Field
-    var syntheticId: String? = null,
+    var subId: String? = null,
 
     @Field
     var name: LangString? = LangString(),

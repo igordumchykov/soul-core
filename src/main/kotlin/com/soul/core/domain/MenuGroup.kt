@@ -5,6 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Field
 class MenuGroup(
 
     @Field
+    var subId: String? = null,
+
+    @Field
     var category: String? = String(),
 
     @Field
